@@ -7,7 +7,10 @@ import java.util.List;
 
 @Entity
 @Table(name = "meal_plans")
-@Data
+@Getter  
+@Setter  
+@ToString(exclude = {"user", "meals"})  
+@EqualsAndHashCode(exclude = {"user", "meals"})  
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder

@@ -6,7 +6,10 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "meals")
-@Data
+@Getter  
+@Setter  
+@ToString(exclude = "mealPlan")  
+@EqualsAndHashCode(exclude = "mealPlan")  
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
