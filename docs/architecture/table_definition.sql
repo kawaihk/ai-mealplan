@@ -92,7 +92,10 @@ BEGIN
         WHERE table_schema = 'public' 
         AND table_name IN ('users', 'user_goals', 'meal_plans', 'meals', 'meal_items', 'meal_tags')
     LOOP
+        EXECUTE format('DROP TRIGGER IF EXISTS update_timestamp_tg ON %I', t);
         EXECUTE format('CREATE TRIGGER update_timestamp_tg BEFORE UPDATE ON %I FOR EACH ROW EXECUTE PROCEDURE update_timestamp()', t);
     END LOOP;
+END;
+$$;
 END;
 $$;
