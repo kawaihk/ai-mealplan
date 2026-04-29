@@ -15,17 +15,5 @@
 | PUT | `/meal-plans/{id}` | 献立更新 |
 | DELETE | `/meal-plans/{id}` | 献立削除 |
 
-## 3. エラーレスポンス形式 (ID 13)
-一貫性を保つため、以下のフォーマットで返却する。
-```json
-{
-  "timestamp": "2026-04-29T10:00:00Z",
-  "status": 400,
-  "error": "Bad Request",
-  "message": "バリデーションエラーが発生しました",
-  "path": "/api/v1/meal-plans",
-  "details": [
-    {"field": "planDate", "message": "未来の日付は指定できません"}
-  ]
-}
-```
+## 3. エラー仕様
+詳細については エラー要件 を参照。
