@@ -91,7 +91,7 @@ bin/                # Compiled classes (often for Eclipse)
 .bundle/            # Bundler directory
 vendor/bundle/      # Bundler dependencies
 log/*.log           # Log files
-tmp/                # Temporary files
+# tmp/ already defined at line 60
 
 # Go
 # bin/ already defined at line 82
