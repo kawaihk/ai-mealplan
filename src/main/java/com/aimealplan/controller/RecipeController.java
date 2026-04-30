@@ -48,7 +48,7 @@ public class RecipeController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<Recipe>> searchRecipes(@RequestParam String keyword) {
+    public ResponseEntity<List<Recipe>> searchRecipes(@RequestParam(required = true) String keyword) {
         return ResponseEntity.ok(recipeService.searchRecipesByTitle(keyword));
     }
 }
