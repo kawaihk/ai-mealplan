@@ -129,4 +129,4 @@ temp/               # Temporary directory
 .DS_Store?
 *.swp
 .idea/
-.vscode/
+# .vscode/ already defined at line 20
