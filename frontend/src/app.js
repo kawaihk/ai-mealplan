@@ -44,18 +44,29 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // 検索イベント
+    // 検索イベント
     searchBtn.addEventListener('click', async () => {
         const keyword = document.getElementById('searchKeyword').value;
         if (!keyword) return loadRecipes();
 
-        const response = await fetch(`${API_BASE}/search?keyword=${encodeURIComponent(keyword)}`);
-        const recipes = await response.json();
-        renderTable(recipes);
+        try {
+            const response = await fetch(`${API_BASE}/search?keyword=${encodeURIComponent(keyword)}`);
+            const recipes = await response.json();
+            renderTable(recipes);
+        } catch (error) {
+            alert('検索中にエラーが発生しました');
+        }
     });
 
-    // キャンセルボタン
-    cancelBtn.addEventListener('click', resetForm);
-
+    async function loadRecipes() {
+        try {
+            const response = await fetch(API_BASE);
+            const recipes = await response.json();
+            renderTable(recipes);
+        } catch (error) {
+            alert('レシピの読み込みに失敗しました');
+        }
+    }
     async function loadRecipes() {
         const response = await fetch(API_BASE);
         const recipes = await response.json();
@@ -93,39 +104,42 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function resetForm() {
-        form.reset();
-        document.getElementById('recipeId').value = '';
-        document.getElementById('formTitle').textContent = '新しいレシピを登録';
-        document.getElementById('submitBtn').textContent = '登録';
-        cancelBtn.style.display = 'none';
-        clearErrors();
-    }
-
-    // グローバルに公開（onclickイベント用）
-    window.editRecipe = async (id) => {
-        const response = await fetch(`${API_BASE}/${id}`);
-        const recipe = await response.json();
-        
-        document.getElementById('recipeId').value = recipe.id;
-        document.getElementById('title').value = recipe.title;
-        document.getElementById('description').value = recipe.description || '';
-        document.getElementById('calories').value = recipe.calories || 0;
-        
-        document.getElementById('formTitle').textContent = 'レシピを編集';
-        document.getElementById('submitBtn').textContent = '更新';
-        cancelBtn.style.display = 'inline';
-        window.scrollTo(0, 0);
+        // グローバルに公開（onclickイベント用）
+        window.editRecipe = async (id) => {
+            try {
+                const response = await fetch(`${API_BASE}/${id}`);
+                const recipe = await response.json();
+                
+                document.getElementById('recipeId').value = recipe.id;
+                document.getElementById('title').value = recipe.title;
+                document.getElementById('description').value = recipe.description || '';
+                document.getElementById('calories').value = recipe.calories || 0;
+                
+                document.getElementById('formTitle').textContent = 'レシピを編集';
+                document.getElementById('submitBtn').textContent = '更新';
+                cancelBtn.style.display = 'inline';
+                window.scrollTo(0, 0);
+            } catch (error) {
+                alert('エラーが発生しました');
+            }
+        };
+        window.deleteRecipe = async (id) => {
+            if (!confirm('削除してもよろしいですか？')) return;
+            try {
+                const response = await fetch(`${API_BASE}/${id}`, { method: 'DELETE' });
+                if (!response.ok) {
+                    throw new Error('削除に失敗しました');
+                }
+                loadRecipes();
+            } catch (error) {
+                alert('削除中にエラーが発生しました');
+            }
     };
 
-    window.deleteRecipe = async (id) => {
-        if (!confirm('削除してもよろしいですか？')) return;
-        await fetch(`${API_BASE}/${id}`, { method: 'DELETE' });
-        loadRecipes();
-    };
 
     function escapeHtml(str) {
         const div = document.createElement('div');
         div.textContent = str;
         return div.innerHTML;
-    }
-});
+    };
+    }});
