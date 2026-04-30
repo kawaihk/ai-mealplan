@@ -23,9 +23,6 @@ import org.hibernate.annotations.UpdateTimestamp;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class Recipe {
 
     @Id
