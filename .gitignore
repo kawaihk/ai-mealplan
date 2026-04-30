@@ -120,7 +120,7 @@ temp/               # Temporary directory
 # -----------------------------------------------------------------------------
 # Environment Variables
 # -----------------------------------------------------------------------------
-.env                # Generic environment file (often sensitive)
+# .env already defined at line 68
 .env.*local         # Local environment files
 
 # -----------------------------------------------------------------------------
