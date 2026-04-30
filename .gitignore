@@ -126,7 +126,7 @@ temp/               # Temporary directory
 # -----------------------------------------------------------------------------
 # Other
 # -----------------------------------------------------------------------------
-.DS_Store?
+# .DS_Store already defined at line 4
 *.swp
 # .idea/ already defined at line 24
 # .vscode/ already defined at line 20
