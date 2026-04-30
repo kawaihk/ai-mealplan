@@ -85,7 +85,7 @@ bin/                # Compiled classes (often for Eclipse)
 *.war               # Web application archive files
 *.ear               # Enterprise application archive files
 .gradle/            # Gradle files
-build/              # Gradle build directory
+# build/ already defined at line 59
 
 # Ruby
 .bundle/            # Bundler directory
