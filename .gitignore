@@ -94,7 +94,7 @@ log/*.log           # Log files
 tmp/                # Temporary files
 
 # Go
-bin/                # Compiled binaries
+# bin/ already defined at line 82
 pkg/                # Compiled packages
 
 # PHP
