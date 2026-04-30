@@ -2,6 +2,7 @@ package com.aimealplan.service.impl;
 
 import com.aimealplan.entity.Recipe;
 import com.aimealplan.repository.RecipeRepository;
+import com.aimealplan.exception.ResourceNotFoundException;
 import com.aimealplan.service.RecipeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -43,14 +44,14 @@ public class RecipeServiceImpl implements RecipeService {
                 recipe.setCalories(recipeDetails.getCalories());
                 return recipeRepository.save(recipe);
             })
-            .orElseThrow(() -> new RuntimeException("Recipe not found with id: " + id));
+            .orElseThrow(() -> new ResourceNotFoundException("Recipe not found with id: " + id));
     }
 
     @Override
     @Transactional
     public void deleteRecipe(Long id) {
         if (!recipeRepository.existsById(id)) {
-            throw new RuntimeException("Recipe not found with id: " + id);
+            throw new ResourceNotFoundException("Recipe not found with id: " + id);
         }
         recipeRepository.deleteById(id);
     }
