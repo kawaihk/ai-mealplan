@@ -16,7 +16,13 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
 @Table(name = "recipes")
-@Data
+@Getter
+@Setter
+@ToString
+@EqualsAndHashCode(exclude = {"id", "createdAt", "updatedAt"})
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
