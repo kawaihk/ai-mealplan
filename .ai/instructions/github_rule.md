@@ -14,14 +14,14 @@
 - **CLI操作**: `gh issue create --title "[Feature] 概要" --body "内容..."`
 
 ## 2. ブランチ管理
-- **命名規則**: `カテゴリ/issue-番号-概要`
+- **命名規則**: `カテゴリ/issue#番号-概要`
   - `feature/`: 新機能
   - `bugfix/`: バグ修正
   - `docs/`: ドキュメント作成・更新
   - `refactor/`: リファクタリング
-  - 例: `feature/issue-12-user-auth`
+  - 例: `feature/issue#12-user-auth`
 - **作成**: 必ず `main` ブランチから最新をプルした状態で作成する。
-- **CLI操作**: `gh repo sync` (同期後) -> `git checkout -b feature/issue-12-auth`
+- **CLI操作**: `gh repo sync` (同期後) -> `git checkout -b "feature/issue#12-auth"`
 
 ## 3. コミットメッセージ
 - **形式**: `タイプ: 概要 (#イシュー番号)`
